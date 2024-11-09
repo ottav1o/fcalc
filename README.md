@@ -15,3 +15,4 @@ Com os requerimentos já satisfeitos, vá ate o diretório raiz do código-fonte
 - [x] Interface interativa
 - [ ] Modo avançado
 - [ ] Calcular por matéria 
+- [ ] Criar mapa de faltas
