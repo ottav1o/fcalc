@@ -1,0 +1,11 @@
+{
+    "Language": "English",
+    "WinTitle": "FCalc - School absences calculator",
+    "WorkingDaysMsg": "Enter the total amount of school days",
+    "LessonsPerDayMsg": "Enter the total amount of lessons per day",
+    "CalcButtonMsg": "Calculate",
+    "AdvancedMsg": "Advanced",
+    "ResultMsg": ["You can stay at home", "days!"],
+    "OpResultMsg": "Result of operation",
+    "ErrNaN": "Please enter a valid number."
+}

@@ -1,0 +1,11 @@
+{
+    "Language": "Português do Brasil",
+    "WinTitle": "FCalc - Calculadora de faltas escolares",
+    "WorkingDaysMsg": "Insira abaixo a quantidade total de dias letivos",
+    "LessonsPerDayMsg": "Insira a quantidade de aulas por dia letivo",
+    "CalcButtonMsg": "Calcular",
+    "AdvancedMsg": "Avançado",
+    "ResultMsg": ["Você pode faltar", "dias no máximo."],
+    "OpResultMsg": "Resultado da Operação",
+    "ErrNaN": "Por favor insira um número válido"
+}
