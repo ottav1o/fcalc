@@ -2,8 +2,9 @@
 - ⚠️ Baseado nas leis brasileiras.
 
 ## Uso
-Primeiramente clonee esse repositório ou baixe o arquivo **_zip_**.
-Depois de concluído a etapa anterior, certifique-se que os seguintes requirimentos estajam satisfeitos:
+Primeiramente clone esse repositório ou baixe o arquivo **_zip_**.
+
+Depois de concluída a etapa anterior, certifique-se que os seguintes requirimentos estajam satisfeitos:
 - Python 3 (Python 3.10> recomendado)
 - PyGObject (GTK, GLIB e GIO)
 
