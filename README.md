@@ -15,5 +15,7 @@ Com os requerimentos já satisfeitos, vá ate o diretório raiz do código-fonte
 ## TODO
 - [x] Interface interativa
 - [ ] Modo avançado
+    - [x] Modificar porcentagem máxima de faltas
+    - [ ] Modificar porcentagem máxima de faltas por matéria
 - [ ] Calcular por matéria 
 - [ ] Criar mapa de faltas
