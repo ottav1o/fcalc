@@ -86,9 +86,19 @@ class MainWindow(gtk.ApplicationWindow):
         wdays = self.wdays_entry.get_text()
         lperday = self.lperday_entry.get_text()
         if wdays and lperday:
-            wdays = int(math.ceil(float(wdays)))
+            try:
+                wdays = int(math.ceil(float(wdays)))
+                lperday = int(math.ceil(float(lperday)))
             
-            lperday = int(math.ceil(float(lperday)))
+            except:
+                dialog = gtk.AlertDialog()
+
+                dialog.set_message(commons.lang['OpResultMsg'])
+                dialog.set_detail(commons.lang['ErrNaN'])
+                dialog.set_modal(True)
+                dialog.show()
+                return
+            
             commons.logger.info(f'Working days: {wdays}, Lessons per day: {lperday}')
                 
             dialog = gtk.AlertDialog()
