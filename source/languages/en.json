@@ -5,7 +5,10 @@
     "LessonsPerDayMsg": "Enter the total amount of lessons per day",
     "CalcButtonMsg": "Calculate",
     "AdvancedMsg": "Advanced",
-    "ResultMsg": ["You can stay at home", "days!"],
+    "ResultMsg": ["You can stay at home", "days!", "(or", "lessons)"],
     "OpResultMsg": "Result of operation",
-    "ErrNaN": "Please enter a valid number."
+    "ErrNaN": "Please enter a valid number.",
+    "AdvancedWinTitle": "Advanced options",
+    "MaxAbsencesPercentageMsg": "Max absences percentage",
+    "SaveBtnMsg": "Save"
 }

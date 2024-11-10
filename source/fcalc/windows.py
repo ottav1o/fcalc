@@ -9,6 +9,44 @@ import math
 
 from .. import commons
 
+class AdvancedOptWindow(gtk.Window):
+    def __init__(self, *args, **kargs) -> None:
+        super().__init__(*args, **kargs)
+        self.set_resizable(False)
+
+        self.main_box = gtk.Box(orientation=gtk.Orientation.VERTICAL)
+        self.main_box.set_spacing(10)
+        self.main_box.set_margin_top(10)
+        self.main_box.set_margin_bottom(10)
+        self.main_box.set_margin_start(10)
+        self.main_box.set_margin_end(10)
+
+        self.multiplier_lbl = gtk.Label(label=commons.lang['MaxAbsencesPercentageMsg'])
+        self.multiplier_entry = gtk.Entry(text=str(commons.max_percentage))
+
+        self.save_btn = gtk.Button(label=commons.lang['SaveBtnMsg'])
+        self.save_btn.connect('clicked', self.save_action)
+
+        self.main_box.append(self.multiplier_lbl)
+        self.main_box.append(self.multiplier_entry)
+
+        self.main_box.append(self.save_btn)
+
+        self.set_child(self.main_box)
+
+    def save_action(self, button):
+        try:
+            commons.max_percentage = math.ceil(float(self.multiplier_entry.get_text()))
+            self.destroy()
+
+        except:
+            dialog = gtk.AlertDialog()
+
+            dialog.set_message(commons.lang['OpResultMsg'])
+            dialog.set_detail(commons.lang['ErrNaN'])
+            dialog.set_modal(True)
+            dialog.show()
+
 class MainWindow(gtk.ApplicationWindow):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -40,6 +78,7 @@ class MainWindow(gtk.ApplicationWindow):
         self.main_box.append(self.advanced_btn)
 
         self.calc_btn.connect('clicked', self.calculate_max_absences)
+        self.advanced_btn.connect('clicked', self.advanced_options)
 
         self.set_child(self.main_box)
 
@@ -54,8 +93,11 @@ class MainWindow(gtk.ApplicationWindow):
                 
             dialog = gtk.AlertDialog()
 
+            result: int = int(((wdays * lperday) / 100) * commons.max_percentage / lperday)
+            result_raw: int = int(((wdays * lperday) / 100) * commons.max_percentage)
+
             dialog.set_message(commons.lang['OpResultMsg'])
-            dialog.set_detail(f'{commons.lang['ResultMsg'][0]} {int(((wdays * lperday) / 100) * 25 / lperday)} {commons.lang['ResultMsg'][1]}')
+            dialog.set_detail(f'{commons.lang['ResultMsg'][0]} {result} {commons.lang['ResultMsg'][1]} {commons.lang['ResultMsg'][2]} {result_raw} {commons.lang['ResultMsg'][3]}')
             dialog.set_modal(True)
             dialog.show()
         
@@ -66,6 +108,10 @@ class MainWindow(gtk.ApplicationWindow):
             dialog.set_detail(commons.lang['ErrNaN'])
             dialog.set_modal(True)
             dialog.show()
+    
+    def advanced_options(self, button):
+        window = AdvancedOptWindow(title=commons.lang['AdvancedWinTitle'])
+        window.present()
 
 
 class Application(gtk.Application):

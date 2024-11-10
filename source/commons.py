@@ -8,3 +8,4 @@ APP_DESC='School absences calculator (Based on brazillian laws)'
 app_language='pt-BR'
 logger: logging.Logger = None
 lang: dict = None
+max_percentage: int = 25

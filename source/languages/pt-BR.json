@@ -5,7 +5,10 @@
     "LessonsPerDayMsg": "Insira a quantidade de aulas por dia letivo",
     "CalcButtonMsg": "Calcular",
     "AdvancedMsg": "Avançado",
-    "ResultMsg": ["Você pode faltar", "dias no máximo."],
+    "ResultMsg": ["Você pode faltar", "dias no máximo.", "(ou", "aulas)"],
     "OpResultMsg": "Resultado da Operação",
-    "ErrNaN": "Por favor insira um número válido"
+    "ErrNaN": "Por favor insira um número válido",
+    "AdvancedWinTitle": "Opções avançadas",
+    "MaxAbsencesPercentageMsg": "Porcentagem máxima de faltas escolares",
+    "SaveBtnMsg": "Salvar"
 }
