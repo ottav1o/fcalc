@@ -18,4 +18,4 @@ Com os requerimentos já satisfeitos, vá ate o diretório raiz do código-fonte
     - [x] Modificar porcentagem máxima de faltas
     - [ ] Modificar porcentagem máxima de faltas por matéria
 - [ ] Calcular por matéria 
-- [ ] Criar mapa de faltas
+- [x] Criar mapa de faltas
