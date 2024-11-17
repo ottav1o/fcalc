@@ -10,5 +10,31 @@
     "ErrNaN": "Please enter a valid number.",
     "AdvancedWinTitle": "Advanced options",
     "MaxAbsencesPercentageMsg": "Max absences percentage",
-    "SaveBtnMsg": "Save"
+    "SaveBtnMsg": "Save",
+    "CreateMapButtonMsg": "Create Map",
+    "GoToSchoolMsg": "Go to school",
+    "DoNotGoToSchoolMsg": "Do not go to school",
+    "days": {
+        "Monday": "Monday",
+        "Tuesday": "Tuesday",
+        "Wednesday": "Wednesday",
+        "Thursday": "Thursday",
+        "Friday": "Friday",
+        "Saturday": "Saturday",
+        "Sunday": "Sunday"
+    },
+    "months": {
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December"
+    }
 }

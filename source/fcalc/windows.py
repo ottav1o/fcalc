@@ -8,6 +8,10 @@ from gi.repository import Gio as gio
 import math
 
 from .. import commons
+import calendar
+import datetime
+import os
+from source.fcalc import export
 
 class AdvancedOptWindow(gtk.Window):
     def __init__(self, *args, **kargs) -> None:
@@ -67,28 +71,41 @@ class MainWindow(gtk.ApplicationWindow):
         self.lper_day_lbl = gtk.Label(label=commons.lang['LessonsPerDayMsg'])
         self.lperday_entry = gtk.Entry()
 
-        self.calc_btn = gtk.Button(label=commons.lang['CalcButtonMsg'])
-        self.advanced_btn = gtk.Button(label=commons.lang['AdvancedMsg'])
+        self.hbox = gtk.Box(orientation=gtk.Orientation.HORIZONTAL)
+        self.hbox.set_spacing(160)
+        self.hbox.set_margin_top(10)
+        self.hbox.set_margin_bottom(10)
+        self.hbox.set_margin_start(10)
+        self.hbox.set_margin_end(10)
 
+        self.calc_btn = gtk.Button(label=commons.lang['CalcButtonMsg'])
+        self.create_absences_map_btn = gtk.Button(label=commons.lang['CreateMapButtonMsg'])
+
+        self.hbox.append(self.calc_btn)
+        self.hbox.append(self.create_absences_map_btn)
+
+        self.advanced_btn = gtk.Button(label=commons.lang['AdvancedMsg'])
+        
         self.main_box.append(self.wdays_lbl)
         self.main_box.append(self.wdays_entry)
         self.main_box.append(self.lper_day_lbl)
         self.main_box.append(self.lperday_entry)
-        self.main_box.append(self.calc_btn)
+        self.main_box.append(self.hbox)
         self.main_box.append(self.advanced_btn)
 
         self.calc_btn.connect('clicked', self.calculate_max_absences)
         self.advanced_btn.connect('clicked', self.advanced_options)
+        self.create_absences_map_btn.connect('clicked', self.save_to_map)
 
         self.set_child(self.main_box)
 
     def calculate_max_absences(self, button):
-        wdays = self.wdays_entry.get_text()
-        lperday = self.lperday_entry.get_text()
-        if wdays and lperday:
+        self.wdays = self.wdays_entry.get_text()
+        self.lperday = self.lperday_entry.get_text()
+        if self.wdays and self.lperday:
             try:
-                wdays = int(math.ceil(float(wdays)))
-                lperday = int(math.ceil(float(lperday)))
+                self.wdays = int(math.ceil(float(self.wdays)))
+                self.lperday = int(math.ceil(float(self.lperday)))
             
             except:
                 dialog = gtk.AlertDialog()
@@ -97,17 +114,17 @@ class MainWindow(gtk.ApplicationWindow):
                 dialog.set_detail(commons.lang['ErrNaN'])
                 dialog.set_modal(True)
                 dialog.show()
-                return
+                return False
             
-            commons.logger.info(f'Working days: {wdays}, Lessons per day: {lperday}')
+            commons.logger.info(f'Working days: {self.wdays}, Lessons per day: {self.lperday}')
                 
             dialog = gtk.AlertDialog()
 
-            result: int = int(((wdays * lperday) / 100) * commons.max_percentage / lperday)
-            result_raw: int = int(((wdays * lperday) / 100) * commons.max_percentage)
+            self.result: int = int(((self.wdays * self.lperday) / 100) * commons.max_percentage / self.lperday)
+            self.result_raw: int = int(((self.wdays * self.lperday) / 100) * commons.max_percentage)
 
             dialog.set_message(commons.lang['OpResultMsg'])
-            dialog.set_detail(f'{commons.lang['ResultMsg'][0]} {result} {commons.lang['ResultMsg'][1]} {commons.lang['ResultMsg'][2]} {result_raw} {commons.lang['ResultMsg'][3]}')
+            dialog.set_detail(f'{commons.lang['ResultMsg'][0]} {self.result} {commons.lang['ResultMsg'][1]} {commons.lang['ResultMsg'][2]} {self.result_raw} {commons.lang['ResultMsg'][3]}')
             dialog.set_modal(True)
             dialog.show()
         
@@ -118,11 +135,33 @@ class MainWindow(gtk.ApplicationWindow):
             dialog.set_detail(commons.lang['ErrNaN'])
             dialog.set_modal(True)
             dialog.show()
+
+            return False
+
+        return True
     
     def advanced_options(self, button):
         window = AdvancedOptWindow(title=commons.lang['AdvancedWinTitle'])
         window.present()
 
+    def save_to_map(self, button):
+        def save(fd, obj):
+            data = export.create_map(self, fd, obj)
+            data = data[:self.result]
+            export.save_to_csv(data[0], data[1])
+
+        commons.logger.info('Exporting data to a CSV File...')
+        fd = gtk.FileDialog()
+        fd.set_modal(True)
+        fd.set_initial_folder(gio.File.new_for_path(os.path.expanduser('~')))
+        filter = gtk.FileFilter()
+        filter.add_pattern('*.csv')
+        filters = gio.ListStore.new(gtk.FileFilter)
+        filters.append(filter)
+        fd.set_filters(filters)
+        fd.set_default_filter(filter)
+        fd.set_initial_name('fcalc_export.csv')
+        fd.save(self, gio.Cancellable.new(), save)
 
 class Application(gtk.Application):
     def __init__(self, *args, **kargs) -> None:

@@ -10,5 +10,31 @@
     "ErrNaN": "Por favor insira um número válido",
     "AdvancedWinTitle": "Opções avançadas",
     "MaxAbsencesPercentageMsg": "Porcentagem máxima de faltas escolares",
-    "SaveBtnMsg": "Salvar"
+    "SaveBtnMsg": "Salvar",
+    "CreateMapButtonMsg": "Criar Mapa",
+    "GoToSchoolMsg": "Ir à escola",
+    "DoNotGoToSchoolMsg": "Não ir à escola",
+    "days": {
+        "Monday": "Segunda",
+        "Tuesday": "Terça",
+        "Wednesday": "Quarta",
+        "Thursday": "Quinta",
+        "Friday": "Sexta",
+        "Saturday": "Sábado",
+        "Sunday": "Domingo"
+    },
+    "months": {
+        "January": "Jeneiro",
+        "February": "Fevereiro",
+        "March": "Março",
+        "April": "Abril",
+        "May": "Maio",
+        "June": "Junho",
+        "July": "Julho",
+        "August": "Agosto",
+        "September": "Setembro",
+        "October": "Outubro",
+        "November": "Novembro",
+        "December": "Dezembro"
+    }
 }

@@ -9,3 +9,6 @@ app_language='pt-BR'
 logger: logging.Logger = None
 lang: dict = None
 max_percentage: int = 25
+REPO = 'github.com/ottav1o/fcalc'
+SCHOOL_START_DAY=15
+SCHOOL_START_MONTH=2
