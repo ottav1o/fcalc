@@ -2,7 +2,7 @@ import logging
 
 is_verbose=False
 APP_ID='org.ottav1o.fcalc'
-APP_VERSION='0.0.0-DEVEL'
+APP_VERSION='1.0.0-REL_CANDIDATE'
 APP_NAME='FCalc'
 APP_DESC='School absences calculator (Based on brazillian laws)'
 app_language='pt-BR'
